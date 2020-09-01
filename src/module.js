@@ -17,12 +17,17 @@ module.exports = async(fileMap, opt, lib) => {
     throw 'Invalid `opt` parameter'
   }
 
-  for (const [path, content] of fileMap.entries()) {
+  // Make a fixed array to prevent newly created files
+  // to be processed
+  const fileList = Array.from(fileMap.entries())
+
+  for (const [path, content] of fileList) {
     for (const renameFct of renameFcts) {
       const newPath = renameFct(path)
 
       if (newPath != null) {
         fileMap.set(newPath, content)
+        fileMap.delete(path)
 
         log(`Rename ${path} to ${newPath}`)
 
