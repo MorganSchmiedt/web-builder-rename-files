@@ -1,4 +1,7 @@
-## v0.1.1 - TBD
+## v0.2.0 - 2020-09-04
+
+**🎇 New**
+- Add `once` option.
 
 **🐞 Bugfix**
 - Prevent files to be processed twice.
